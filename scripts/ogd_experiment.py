@@ -1,10 +1,10 @@
 # Example usage:
-# python -m scripts.architecture_improvement \
+# python -m scripts.ogd_experiment \
 #     --gpus 1 \
 #     --cpus 16 \
 #     --num-trials-gpu 1 \
 #     --num-cpus-trial 2 \
-#     --logs-path ./logs/hyena-improvement \
+#     --logs-path ./logs/ogd-experiment \
 #     --log-to-csv \
 #     --log-to-wandb \
 #     --wandb-project MAD \

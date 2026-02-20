@@ -1,9 +1,9 @@
 # Example usage:
 # python -m scripts.ogd_experiment \
 #     --gpus 1 \
-#     --cpus 16 \
+#     --cpus 2 \
 #     --num-trials-gpu 1 \
-#     --num-cpus-trial 2 \
+#     --num-cpus-trial 1 \
 #     --logs-path ./logs/ogd-experiment \
 #     --log-to-csv \
 #     --log-to-wandb \
@@ -281,7 +281,7 @@ if __name__ == '__main__':
     mad_scores.to_csv(
         os.path.join(
             args['results_path'],
-            'mad_scores_hyena_improvement.csv'
+            'mad_scores_ogd.csv'
         ),
         index=False
     )
@@ -293,7 +293,7 @@ if __name__ == '__main__':
     fig.savefig(
         os.path.join(
             args['figures_path'],
-            'mad_scores_hyena_improvement.png'
+            'mad_scores_ogd.png'
         ),
         dpi=330
     )

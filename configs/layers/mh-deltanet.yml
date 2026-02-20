@@ -4,3 +4,4 @@ conv_size: 4
 use_qk_activation: true
 initial_state: false
 eta: 1.0
+dim: 128

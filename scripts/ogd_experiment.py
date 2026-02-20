@@ -89,6 +89,8 @@ def run_sweep(
                     task: str,
                     vocab_size: int,
                     max_length: int,
+                    eta: float,
+                    sync_kv_scale: bool = False,
                 ) -> nn.Module:
                     
                     layers = [layer_registry[l]['module'] for l in model_layers]
@@ -96,6 +98,7 @@ def run_sweep(
                     for layer_config in layer_configs:
                         layer_config['max_length'] = max_length
                         layer_config['eta'] = eta
+                        layer_config['sync_kv_scale'] = sync_kv_scale
                     # layer registry has 3 entries per layer:
                     # - module: torch.nn.Module to create layer
                     # - cfg: path to config specifying default setting of layer
@@ -111,13 +114,40 @@ def run_sweep(
                 
                 # Create an identifier for the model.
 
-                model_id = '-'.join(layer_registry[l]['shorthand'] for l in model_layers)
+                model_id = f'{model_label}_eta{eta}'
                 
                 # Run model through benchmark.
 
                 model_mad_scores = benchmark(
-                    make_model_fn=make_model_fn,
+                    make_model_fn=lambda task, vocab_size, max_length, eta: make_model_fn(
+                        task=task,
+                        vocab_size=vocab_size,
+                        max_length=max_length,
+                        eta=eta,
+                        sync_kv_scale=False,
+                    ),
                     model_id=model_id,
+                    gpus=gpus,
+                    cpus=cpus,
+                    num_trials_gpu=num_trials_gpu,
+                    num_cpus_trial=num_cpus_trial,
+                    logs_path=logs_path,
+                    log_to_csv=log_to_csv,
+                    log_to_wandb=log_to_wandb,
+                    wandb_project=wandb_project,
+                    save_checkpoints=save_checkpoints,
+                    ray_tmp_path=ray_tmp_path,
+                )
+
+                model_mad_scores_kv_scale = benchmark(
+                    make_model_fn=lambda task, vocab_size, max_length, eta: make_model_fn(
+                        task=task,
+                        vocab_size=vocab_size,
+                        max_length=max_length,
+                        eta=eta,
+                        sync_kv_scale=True,
+                    ),
+                    model_id=model_id + '_sync_kv_scale',
                     gpus=gpus,
                     cpus=cpus,
                     num_trials_gpu=num_trials_gpu,
@@ -135,6 +165,10 @@ def run_sweep(
                 model_mad_scores['total'] = model_mad_scores.mean()
                 model_mad_scores['model'] = model_label
                 mad_scores.append(model_mad_scores.to_frame().T)
+
+                model_mad_scores_kv_scale['total'] = model_mad_scores_kv_scale.mean()
+                model_mad_scores_kv_scale['model'] = model_label + '_sync_kv_scale'
+                mad_scores.append(model_mad_scores_kv_scale.to_frame().T)
         
     return pd.concat(mad_scores)
     

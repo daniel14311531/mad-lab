@@ -108,31 +108,6 @@ def run_sweep(
                         layers=layers,
                         layer_cfgs=layer_configs,
                     )
-                    
-                def make_model_fn_without_qk_activation(
-                    task: str,
-                    vocab_size: int,
-                    max_length: int,
-                ) -> nn.Module:
-                    
-                    layers = [layer_registry[l]['module'] for l in model_layers]
-                    layer_configs = [ load_yml(os.path.join(layer_registry[l]['cfg'])) for l in model_layers ]
-                    for layer_config in layer_configs:
-                        layer_config['max_length'] = max_length
-                        layer_config['eta'] = eta
-                        layer_config['use_qk_activation'] = False
-                    # layer registry has 3 entries per layer:
-                    # - module: torch.nn.Module to create layer
-                    # - cfg: path to config specifying default setting of layer
-                    # - shorthand: abbreviation of layer name
-                    
-                    backbone = LanguageModel if task not in {'compression'} else AutoEncoder
-                    return backbone(
-                        vocab_size=vocab_size,
-                        max_length=max_length,
-                        layers=layers,
-                        layer_cfgs=layer_configs,
-                    )
                 
                 # Create an identifier for the model.
 
@@ -159,29 +134,6 @@ def run_sweep(
 
                 model_mad_scores['total'] = model_mad_scores.mean()
                 model_mad_scores['model'] = model_label
-                mad_scores.append(model_mad_scores.to_frame().T)
-                
-                # Run model without qk activation through benchmark.
-
-                model_mad_scores = benchmark(
-                    make_model_fn=make_model_fn_without_qk_activation,
-                    model_id=model_id + '-no-qk-activation',
-                    gpus=gpus,
-                    cpus=cpus,
-                    num_trials_gpu=num_trials_gpu,
-                    num_cpus_trial=num_cpus_trial,
-                    logs_path=logs_path,
-                    log_to_csv=log_to_csv,
-                    log_to_wandb=log_to_wandb,
-                    wandb_project=wandb_project,
-                    save_checkpoints=save_checkpoints,
-                    ray_tmp_path=ray_tmp_path,
-                )
-
-                # Collect results.
-
-                model_mad_scores['total'] = model_mad_scores.mean()
-                model_mad_scores['model'] = model_label + ' (no qk activation)'
                 mad_scores.append(model_mad_scores.to_frame().T)
         
     return pd.concat(mad_scores)

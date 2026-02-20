@@ -222,6 +222,9 @@ def train(
         enable_checkpointing=mad_config.save_checkpoints,
         callbacks=callbacks,
         precision=mad_config.precision,
+
+        log_every_n_steps=50,
+        enable_progress_bar=False,
     )
 
     # Train.

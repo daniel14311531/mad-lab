@@ -119,7 +119,7 @@ def run_sweep(
                 # Run model through benchmark.
 
                 model_mad_scores = benchmark(
-                    make_model_fn=lambda task, vocab_size, max_length, eta: make_model_fn(
+                    make_model_fn=lambda task, vocab_size, max_length: make_model_fn(
                         task=task,
                         vocab_size=vocab_size,
                         max_length=max_length,
@@ -140,7 +140,7 @@ def run_sweep(
                 )
 
                 model_mad_scores_kv_scale = benchmark(
-                    make_model_fn=lambda task, vocab_size, max_length, eta: make_model_fn(
+                    make_model_fn=lambda task, vocab_size, max_length: make_model_fn(
                         task=task,
                         vocab_size=vocab_size,
                         max_length=max_length,

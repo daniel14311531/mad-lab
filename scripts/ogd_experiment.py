@@ -73,7 +73,7 @@ def run_sweep(
 
     mad_scores = []
     ogd_methods = ['mh-deltanet', 'mh-omd-deltanet', 'mh-conceptual-deltanet']
-    etas = [0.01, 0.1, 1.0]
+    etas = [0.1]
     for ogd_method in ogd_methods:
         for eta in etas:
             for model_label, model_layers in {

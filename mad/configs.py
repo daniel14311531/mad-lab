@@ -157,8 +157,10 @@ class MADModelConfig(BaseConfig):
 def make_benchmark_mad_configs(**kwargs):
     """Returns a list containing all MADConfigs of the MAD benchmark."""
 
-    lrs = [1e-4, 5e-4, 1e-3]
-    wds = [0.0, 0.1]
+    # lrs = [1e-4, 5e-4, 1e-3]
+    lrs = [5e-4]
+    # wds = [0.0, 0.1]
+    wds = [0.1]
     mad_configs = []
     for task in task_registry.keys():
         task_cfg = load_yml(task_registry[task]['cfg'])

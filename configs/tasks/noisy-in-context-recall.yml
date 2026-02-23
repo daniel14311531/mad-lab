@@ -7,7 +7,7 @@ baseline:
   frac_noise: 0.2
 
 changes:
-  vocab_size: [48, 80, 144] # adding 16 for noise vocab!
-  seq_len: [256, 512, 1024]
-  num_train_examples: [6400, 3200, 1600, 800]
-  frac_noise: [0.4, 0.6, 0.8]
+  # vocab_size: [48, 80, 144] # adding 16 for noise vocab!
+  # seq_len: [256, 512, 1024]
+  # num_train_examples: [6400, 3200, 1600, 800]
+  # frac_noise: [0.4, 0.6, 0.8]

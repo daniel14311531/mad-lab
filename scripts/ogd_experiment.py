@@ -80,7 +80,7 @@ def run_sweep(
                 # Pure Ogd Method:
                 'MH Deltanet + SwiGLU': [ogd_method, 'swiglu', ogd_method, 'swiglu'],
                 # Ogd Method + Attention
-                'Striped MH Hyena + SwiGLU': ['mh-attention', 'swiglu', ogd_method, 'swiglu'],
+                # 'Striped MH Hyena + SwiGLU': ['mh-attention', 'swiglu', ogd_method, 'swiglu'],
             }.items():
 
                 # Define function that creates model.

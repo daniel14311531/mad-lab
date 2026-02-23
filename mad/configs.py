@@ -177,12 +177,12 @@ def make_benchmark_mad_configs(**kwargs):
                 mad_config.update_from_kwargs(baseline)
                 mad_configs.append(mad_config)
                 # changes to baseline setting, varying task difficulty:
-                for change_key in changes:
-                    change_cfg = dict(baseline)
-                    for change_value in changes[change_key]:
-                        change_cfg[change_key] = change_value
-                        mad_config = MADConfig(lr=lr, weight_decay=wd)
-                        mad_config.update_from_kwargs(change_cfg)
-                        mad_configs.append(mad_config)
+                # for change_key in changes:
+                #     change_cfg = dict(baseline)
+                #     for change_value in changes[change_key]:
+                #         change_cfg[change_key] = change_value
+                #         mad_config = MADConfig(lr=lr, weight_decay=wd)
+                #         mad_config.update_from_kwargs(change_cfg)
+                #         mad_configs.append(mad_config)
 
     return mad_configs

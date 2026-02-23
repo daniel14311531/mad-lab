@@ -62,16 +62,16 @@ layer_registry = {
         'shorthand': 'Sg'
     },
     # sequence mixers:
-    'attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/attention.yml',
-        'shorthand': 'A'
-    },
-    'sliding-attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/sliding-attention.yml',
-        'shorthand': 'As'
-    },
+    # 'attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/attention.yml',
+    #     'shorthand': 'A'
+    # },
+    # 'sliding-attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/sliding-attention.yml',
+    #     'shorthand': 'As'
+    # },
     'linear-attention': {
         'module': layers.LinearAttention,
         'cfg': 'configs/layers/linear-attention.yml',
@@ -97,16 +97,16 @@ layer_registry = {
         'cfg': 'configs/layers/mamba.yml',
         'shorthand': 'Mb'
     },
-    'mh-attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/mh-attention.yml',
-        'shorthand': 'mA'
-    },
-    'mh-sliding-attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/mh-sliding-attention.yml',
-        'shorthand': 'mAs'
-    },
+    # 'mh-attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/mh-attention.yml',
+    #     'shorthand': 'mA'
+    # },
+    # 'mh-sliding-attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/mh-sliding-attention.yml',
+    #     'shorthand': 'mAs'
+    # },
     'mh-linear-attention': {
         'module': layers.LinearAttention,
         'cfg': 'configs/layers/mh-linear-attention.yml',

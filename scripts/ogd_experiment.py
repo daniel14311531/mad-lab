@@ -73,12 +73,17 @@ def run_sweep(
 
     mad_scores = []
     ogd_methods = ['mh-deltanet', 'mh-omd-deltanet', 'mh-conceptual-deltanet']
+    name_map = {
+        'mh-deltanet': 'MH Deltanet',
+        'mh-omd-deltanet': 'MH OMD Deltanet',
+        'mh-conceptual-deltanet': 'MH Conceptual Deltanet'
+    }
     etas = [0.1]
     for ogd_method in ogd_methods:
         for eta in etas:
             for model_label, model_layers in {
                 # Pure Ogd Method:
-                'MH Deltanet + SwiGLU': [ogd_method, 'swiglu', ogd_method, 'swiglu'],
+                f'{name_map[ogd_method]} + SwiGLU': [ogd_method, 'swiglu', ogd_method, 'swiglu'],
                 # Ogd Method + Attention
                 # 'Striped MH Hyena + SwiGLU': ['mh-attention', 'swiglu', ogd_method, 'swiglu'],
             }.items():

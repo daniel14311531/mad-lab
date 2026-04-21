@@ -12,3 +12,5 @@ from mad.model.layers.rwkv import time_mixer_rwkv5_wrapped_bf16
 from mad.model.layers.rwkv import time_mixer_rwkv6_wrapped_bf16
 
 from mad.model.layers.ogd import *
+from mad.model.layers.my_gla import *
+from mad.model.layers.least_square import LeastSquareLayer

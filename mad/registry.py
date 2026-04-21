@@ -153,10 +153,25 @@ layer_registry = {
         'cfg': 'configs/layers/mh-omd-deltanet.yml',
         'shorthand': 'Multi-Head-Omd-Deltanet'
     },
-    'mh-conceptual-deltanet': {
-        'module': layers.ogd.ConceptualDeltaNetLayer,
-        'cfg': 'configs/layers/mh-conceptual-deltanet.yml',
-        'shorthand': 'Multi-Head-Conceptual-Deltanet'
+    'mh-o2b-deltanet': {
+        'module': layers.ogd.O2BDeltaNetLayer,
+        'cfg': 'configs/layers/mh-o2b-deltanet.yml',
+        'shorthand': 'Multi-Head-O2B-Deltanet'
+    },
+    'mh-o2b-weighted-deltanet': {
+        'module': layers.ogd.O2BWeightedDeltaNetLayer,
+        'cfg': 'configs/layers/mh-o2b-weighted-deltanet.yml',
+        'shorthand': 'Multi-Head-O2B-Weighted-Deltanet'
+    },
+    'mh-gla-naive': {
+        'module': layers.my_gla.GlaNaive,
+        'cfg': 'configs/layers/mh-gla-naive.yml',
+        'shorthand': 'Multi-Head-Gla-Naive'
+    },
+    'mh-least-square': {
+        'module': layers.LeastSquareLayer,
+        'cfg': 'configs/layers/mh-least-square.yml',
+        'shorthand': 'Multi-Head-Least-Square'
     },
 }
 

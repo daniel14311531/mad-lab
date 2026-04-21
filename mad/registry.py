@@ -62,16 +62,16 @@ layer_registry = {
         'shorthand': 'Sg'
     },
     # sequence mixers:
-    'attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/attention.yml',
-        'shorthand': 'A'
-    },
-    'sliding-attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/sliding-attention.yml',
-        'shorthand': 'As'
-    },
+    # 'attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/attention.yml',
+    #     'shorthand': 'A'
+    # },
+    # 'sliding-attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/sliding-attention.yml',
+    #     'shorthand': 'As'
+    # },
     'linear-attention': {
         'module': layers.LinearAttention,
         'cfg': 'configs/layers/linear-attention.yml',
@@ -97,16 +97,16 @@ layer_registry = {
         'cfg': 'configs/layers/mamba.yml',
         'shorthand': 'Mb'
     },
-    'mh-attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/mh-attention.yml',
-        'shorthand': 'mA'
-    },
-    'mh-sliding-attention': {
-        'module': layers.Attention,
-        'cfg': 'configs/layers/mh-sliding-attention.yml',
-        'shorthand': 'mAs'
-    },
+    # 'mh-attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/mh-attention.yml',
+    #     'shorthand': 'mA'
+    # },
+    # 'mh-sliding-attention': {
+    #     'module': layers.Attention,
+    #     'cfg': 'configs/layers/mh-sliding-attention.yml',
+    #     'shorthand': 'mAs'
+    # },
     'mh-linear-attention': {
         'module': layers.LinearAttention,
         'cfg': 'configs/layers/mh-linear-attention.yml',
@@ -141,7 +141,23 @@ layer_registry = {
         'module': layers.channel_mixer_rwkv6_wrapped,
         'cfg': 'configs/layers/rwkv6-channel-mixer.yml',
         'shorthand': 'R6c'
-    }
+    },
+
+    'mh-deltanet': {
+        'module': layers.ogd.DeltaNetLayer,
+        'cfg': 'configs/layers/mh-deltanet.yml',
+        'shorthand': 'Multi-Head-Deltanet'
+    },
+    'mh-omd-deltanet': {
+        'module': layers.ogd.OmdDeltaNetLayer,
+        'cfg': 'configs/layers/mh-omd-deltanet.yml',
+        'shorthand': 'Multi-Head-Omd-Deltanet'
+    },
+    'mh-conceptual-deltanet': {
+        'module': layers.ogd.ConceptualDeltaNetLayer,
+        'cfg': 'configs/layers/mh-conceptual-deltanet.yml',
+        'shorthand': 'Multi-Head-Conceptual-Deltanet'
+    },
 }
 
 

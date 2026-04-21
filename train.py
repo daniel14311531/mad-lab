@@ -222,6 +222,9 @@ def train(
         enable_checkpointing=mad_config.save_checkpoints,
         callbacks=callbacks,
         precision=mad_config.precision,
+
+        log_every_n_steps=50,
+        enable_progress_bar=False,
     )
 
     # Train.
@@ -230,8 +233,8 @@ def train(
 
     # Evaluate Final Performance.
 
-    results_train = trainer.validate(dataloaders=train_dl)[0]
-    results_test = trainer.validate(dataloaders=test_dl)[0]
+    results_train = trainer.validate(dataloaders=train_dl, weights_only=False)[0]
+    results_test = trainer.validate(dataloaders=test_dl, weights_only=False)[0]
     results_df = pd.DataFrame({
         # training data:
         'train_acc': results_train['test/Accuracy_epoch'], # its called "test/..." because we compute results with trainer.validate

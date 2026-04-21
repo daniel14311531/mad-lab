@@ -4,4 +4,4 @@ baseline:
   num_train_examples: 256
 
 changes:
-  vocab_size: [512, 1024, 2048, 4096, 8192]
+  # vocab_size: [512, 1024, 2048, 4096, 8192]
